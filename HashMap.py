@@ -3,7 +3,7 @@ import hashlib
 class HashMap():
 
     def __init__(self, size):
-        self.table = [[]] * size
+        self.table = [[] for _ in range(size)]
         print (self.table)
         self.table_size = size
 
