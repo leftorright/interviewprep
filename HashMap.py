@@ -4,7 +4,6 @@ class HashMap():
 
     def __init__(self, size):
         self.table = [[] for _ in range(size)]
-        print (self.table)
         self.table_size = size
 
     def hash(self, key):
@@ -12,7 +11,8 @@ class HashMap():
 
     def insert(self, key, value):
         index = self.hash(key)
-        self.table[index].append(key, value)
+        self.remove(key)
+        self.table[index].append((key, value))
 
     def get(self, key):
         index = self.hash(key)
@@ -21,6 +21,13 @@ class HashMap():
                 return v
         else:
             return None
+
+    def remove(self, key):
+        index = self.hash(key)
+        for i, element in enumerate(self.table[index]):
+            if element[0] == key:
+                return self.table[index].pop(i)
+        return None
 
 
 def test_insert(HashMap):
